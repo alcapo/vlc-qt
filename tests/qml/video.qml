@@ -27,6 +27,7 @@ Rectangle {
     VlcVideoPlayer {
         id: vidwidget
         anchors.fill: parent
+        //url: "http://www.noiseaddicts.com/samples_1w72b820/4260.mp3"
         url: "http://videos.hd-trailers.net/e23ab4b8-a737-46dd-a0e4-259ba36056b6_YsfXbEghC5XywlmkKiYrF0D1oWcPYHA94aPeKmTuUKJJVJBpH4AFbPzcNWMhAJHuRnKZAAatvKg-_8_0.mp4"
         //url: "http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_640x360.m4v"
     }

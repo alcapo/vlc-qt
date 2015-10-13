@@ -48,7 +48,9 @@ IF(NOT DEFINED LIBVLC_VERSION)
     SET(LIBVLC_VERSION 0x020200)
 ENDIF()
 # Include libVLC library
-FIND_PACKAGE(LIBVLC REQUIRED)
+IF(NOT IOS)
+    FIND_PACKAGE(LIBVLC REQUIRED)
+ENDIF()
 
 # Set Qt bin dir to find QtCoreX.dll and other libs to install
 STRING(REGEX REPLACE "([^ ]+)[/\\].*" "\\1" QT_BIN_DIR_TMP "${QT_MOC_EXECUTABLE}")

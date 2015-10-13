@@ -222,11 +222,15 @@ void *VlcQmlVideoObject::lockCallback(void **planes)
         planes[i] = reinterpret_cast<void *>(_frame.plane[i].data());
     }
 
+    qDebug() << "Lock";
+
     return 0; // There is only one buffer, so no need to identify it.
 }
 
 void VlcQmlVideoObject::unlockCallback(void *picture, void *const*planes)
 {
+    qDebug() << "Unlock";
+
     Q_UNUSED(picture);
     Q_UNUSED(planes);
     unlock();
@@ -237,6 +241,8 @@ void VlcQmlVideoObject::unlockCallback(void *picture, void *const*planes)
 
 void VlcQmlVideoObject::displayCallback(void *picture)
 {
+    qDebug() << "Display";
+
     if( !_frame.inited )
     {
         float sar = _player->sampleAspectRatio();
@@ -263,8 +269,8 @@ unsigned int VlcQmlVideoObject::formatCallback(char *chroma,
     if (!_graphicsPainter)
         _graphicsPainter = new GlslPainter;
 
-    qstrcpy(chroma, "YV12");
-    const vlc_chroma_description_t *chromaDesc = vlc_fourcc_GetChromaDescription(VLC_CODEC_YV12);
+    qstrcpy(chroma, "I420");
+    const vlc_chroma_description_t *chromaDesc = vlc_fourcc_GetChromaDescription(VLC_CODEC_I420);
 
     Q_ASSERT(chromaDesc);
 

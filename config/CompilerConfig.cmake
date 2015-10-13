@@ -67,9 +67,20 @@ IF(MSVC)
 ENDIF()
 
 # Support OS X 10.6 or later (64-bit only)
-IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+IF(NOT IOS AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     SET(CMAKE_MACOSX_RPATH ON)
     SET(CMAKE_INSTALL_RPATH "@loader_path/../lib")
     SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
     SET(CMAKE_OSX_ARCHITECTURES x86_64)
+ENDIF()
+
+# iOS Config
+IF(IOS)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fobjc-abi-version=2 -fobjc-arc -std=gnu++11 -stdlib=libc++ -isysroot ${CMAKE_OSX_SYSROOT}")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fobjc-abi-version=2 -fobjc-arc -isysroot ${CMAKE_OSX_SYSROOT}")
+
+    IF (${SIMULATOR})
+      set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mios-simulator-version-min=7.0")
+      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mios-simulator-version-min=7.0")
+    ENDIF()
 ENDIF()

@@ -60,6 +60,7 @@ INSTALL(
     COMPONENT Devel
 )
 
+IF (NOT IOS)
 WRITE_BASIC_PACKAGE_VERSION_FILE(
     "${CMAKE_BINARY_DIR}/package/VLCQtWidgets/VLCQtWidgetsConfigVersion.cmake"
     VERSION ${VLCQT_VERSION}
@@ -85,6 +86,7 @@ INSTALL(
     DESTINATION ${VlcQtWidgetsConfigPackageLocation}
     COMPONENT Devel
 )
+ENDIF()
 
 IF(QT_VERSION MATCHES 5)
     WRITE_BASIC_PACKAGE_VERSION_FILE(
