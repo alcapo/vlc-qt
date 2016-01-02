@@ -2,6 +2,7 @@ version: 1.0.0.{build}
 
 branches:
   except:
+    - feature/tests
     - project/travis
     - project/docs
     - feature/experiments

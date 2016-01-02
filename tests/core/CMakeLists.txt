@@ -15,32 +15,5 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this library. If not, see <http://www.gnu.org/licenses/>.
 #############################################################################
-# Macros #
-##########
-MACRO(ADD_AUTO_TEST TestName TestSrc)
-    SET(Test_${TestName}_Srcs ${TestSrc})
 
-    ADD_EXECUTABLE(Test_${TestName} ${Test_${TestName}_Srcs})
-    ADD_DEPENDENCIES(Test_${TestName} ${VLCQT_CORE})
-    TARGET_LINK_LIBRARIES(Test_${TestName} Qt5::Core Qt5::Test ${VLCQT_CORE_BINARY})
-
-    ADD_TEST(Test_${TestName} Test_${TestName})
-ENDMACRO()
-
-
-#################
-# Configuration #
-#################
-
-CONFIGURE_FILE(
-    ${CMAKE_SOURCE_DIR}/tests/TestsConfig.h.in
-    ${CMAKE_BINARY_DIR}/tests/TestsConfig.h
-)
-
-INCLUDE_DIRECTORIES(
-    ${CMAKE_SOURCE_DIR}/src
-    ${CMAKE_BINARY_DIR}/tests
-    ${CMAKE_BINARY_DIR}/tests/core
-)
-
-ADD_SUBDIRECTORY(core)
+ADD_AUTO_TEST(CoreInstance TestInstance.cpp)
