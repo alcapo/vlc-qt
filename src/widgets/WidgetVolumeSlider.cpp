@@ -66,20 +66,6 @@ void VlcWidgetVolumeSlider::initWidgetVolumeSlider()
     connect(this, SIGNAL(valueChanged(int)), this, SLOT(setVolume(int)));
 }
 
-void VlcWidgetVolumeSlider::mousePressEvent(QMouseEvent *event)
-{
-    event->ignore();
-
-    lock();
-}
-
-void VlcWidgetVolumeSlider::mouseReleaseEvent(QMouseEvent *event)
-{
-    event->ignore();
-
-    unlock();
-}
-
 void VlcWidgetVolumeSlider::setMediaPlayer(VlcMediaPlayer *player)
 {
     _vlcAudio = player->audio();
